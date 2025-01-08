@@ -51,6 +51,21 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+		<!-- Mockito Core -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>5.5.0</version> <!-- Gunakan versi terbaru -->
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Mockito JUnit Integration -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>5.5.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -58,6 +73,26 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.12</version> <!-- Versi terbaru -->
+				<executions>
+					<execution>
+						<id>prepare-agent</id> <!-- ID unik untuk eksekusi pertama -->
+						<goals>
+							<goal>prepare-agent</goal> <!-- Menyiapkan agen untuk pengukuran -->
+						</goals>
+					</execution>
+					<execution>
+						<id>generate-report</id> <!-- ID unik untuk eksekusi kedua -->
+						<goals>
+							<goal>report</goal> <!-- Membuat laporan coverage -->
+						</goals>
+						<phase>prepare-package</phase> <!-- Laporan akan dibuat sebelum package -->
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

@@ -19,6 +19,17 @@ public class Book implements Serializable {
     @Column(name = "description")
     private String description;
 
+    // Konstruktor default (diperlukan oleh JPA)
+    public Book() {}
+
+    // Konstruktor dengan argumen
+    public Book(Long id, String title, String author, String description) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }
