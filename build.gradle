@@ -1,0 +1,47 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.8' // Spring Boot plugin
+    id 'io.spring.dependency-management' version '1.1.0' // Dependency management plugin
+    id 'java' // Java plugin for compiling Java code
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'  // Spring Boot Web starter
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'  // Spring Data JPA
+    implementation 'org.springframework.boot:spring-boot-starter-validation'  // Validation support
+    runtimeOnly 'org.springframework.boot:spring-boot-devtools'  // Dev tools
+    implementation 'org.postgresql:postgresql:42.3.8'  // PostgreSQL driver
+
+    // Testing dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'  // Spring Boot test starter
+    testImplementation 'org.mockito:mockito-core:5.5.0'  // Mockito core
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.5.0'  // Mockito JUnit integration
+}
+
+group = 'com.mhdjanuar'
+version = '0.0.1-SNAPSHOT'
+description = 'crud-spring-boot-11'
+java.sourceCompatibility = JavaVersion.VERSION_17  // Java 17 compatibility
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8' // Ensuring UTF-8 encoding
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8' // Javadoc encoding
+}
+
+// Spring Boot plugin automatically adds `bootRun` task for running the application
+bootRun {
+    jvmArgs = ["-Dspring.profiles.active=dev"]  // Optional: use the 'dev' profile
+}
+
+build {
+    // You can configure test coverage tools here if necessary, like JaCoCo
+}
